@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 export DISPLAY=localhost:10.0
 export $(dbus-launch)
 
