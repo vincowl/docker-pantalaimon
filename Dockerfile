@@ -20,5 +20,6 @@ RUN chmod a+x runme.sh \
 
 VOLUME /data
 
+ENTRYPOINT ["/bin/bash"]
 CMD ["runme.sh"]
 
