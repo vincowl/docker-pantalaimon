@@ -1,8 +1,12 @@
 FROM matrixdotorg/pantalaimon
 
+RUN mkdir -p /app
+WORKDIR /app
+
 RUN apt-get update && apt-get install -y pkg-config libcairo2-dev libgirepository1.0-dev libdbus-1-dev dbus-x11 
 
 RUN pip install pantalaimon[ui]
+
 
 COPY config/org.pantalaimon1.service /usr/share/dbus-1/services/.
 COPY config/pantalaimon.conf /data
@@ -14,6 +18,8 @@ RUN chmod a+x runme.sh \
     && dbus-uuidgen > /var/lib/dbus/machine-id \
     && dbus-daemon --config-file=/usr/share/dbus-1/system.conf --print-address \
     && export $(dbus-launch)
+
+VOLUME /data
 
 CMD ["runme.sh"]
 
