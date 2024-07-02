@@ -18,6 +18,9 @@ RUN chmod a+x runme.sh \
     && dbus-daemon --config-file=/usr/share/dbus-1/system.conf --print-address \
     && export $(dbus-launch)
 
+ENV DISPLAY=localhost:0
+ENV $(dbus-launch)
+
 VOLUME /data
 
 ENTRYPOINT ["/bin/bash"]
